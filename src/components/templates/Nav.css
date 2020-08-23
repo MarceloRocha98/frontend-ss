@@ -1,0 +1,13 @@
+@media(max-width:996px){
+
+ .brand-conteiner{
+   text-align: center;
+   /* font-weight: bold; */
+   font-size: large;
+ }
+
+}
+
+.brand-conteiner{
+    font-size: large;
+}

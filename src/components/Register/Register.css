@@ -1,0 +1,44 @@
+.register-container .content{
+    margin-top: 5em;
+    display: flex;
+    flex-direction: row;
+   
+}
+section{
+    margin-left: 2em;
+    padding-left: 2em;
+}
+
+form {
+    display: flex;
+    flex-direction: column;
+    margin-left: 2em;
+    padding-left: 2em;
+}
+
+form .form-group{
+    display: flex;
+    flex-direction: column;
+}
+
+button{
+    border-radius: 2em;
+}
+
+.textcolor2{
+    color: white;
+    background: linear-gradient(to right, rgb(22, 34, 42), rgb(58, 96, 115));
+}
+
+
+@media(max-width:955px){
+    .register-container{
+        display: flex;
+        flex-direction: column;
+    } 
+    
+    .video video{
+        width: 500px;
+    }
+}
+

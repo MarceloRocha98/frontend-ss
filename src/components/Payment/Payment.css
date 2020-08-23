@@ -1,0 +1,9 @@
+input{
+    margin: 3px;
+}
+
+@media(max-width:995px){
+    .input{
+        width: 100%;
+    }
+}

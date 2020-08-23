@@ -1,0 +1,65 @@
+import React from 'react';
+import Nav from '../templates/Nav'
+import Footer from '../templates/Footer'
+import Form from './Form'
+import api from '../../services/api';
+import { userKey } from '../Signin/Signin';
+export default class Contato extends React.Component{
+
+
+    async componentDidMount() {
+        const user = JSON.parse(localStorage.getItem(userKey))
+
+        // console.log(this.props)
+        // console.log(user,typeof(user))
+        const res = await api.post('validateToken', user)
+            .then(resp => {
+                // console.log(resp.data)
+                if (!resp.data) {
+
+                    //   history.push('/Signin')
+                    localStorage.removeItem(userKey)
+                    alert('Sua sessão expirou, entre novamente para continuar')
+                    this.props.history.push('/Signin')
+
+                }
+                if (resp.data) {
+                    console.log(user.token)
+                    const token = (user.token)
+                    api.defaults.headers.common['Authorization'] = `Bearer ${token}`
+
+                }
+                //   this.setState({ loading: false })
+
+            })
+    }
+    render() {
+        
+
+        return (
+            
+            <div className='mt-4 pt-5'>
+                <Nav />
+                <div className='mt-3 d-flex flex-column'>
+                    <div className='d-flex flex-column m-3'>
+                        <div className='m-2'>
+
+                    <a  href="mailto:seuservico.suporte@gmail.com"><i class="fa fa-envelope text-decoration-none" aria-hidden="true">seuservico.suporte@gmail.com</i></a>
+                        </div>
+                        {/* <i class="fa fa-envelope" aria-hidden="true">seuservico.suporte@gmail.com</i> */}
+                        {/* <i class="fa fa-whatsapp" aria-hidden="true">11954479511</i> */}
+                        <p>
+           <a className='m-2' href="https://api.whatsapp.com/send?phone=5511954479511">      
+           <i class="fa fa-whatsapp text-decoration-none" aria-hidden="true">(11)95447-9511</i>
+           </a>
+       </p>
+                    </div>
+                    <h3 className='text-center font-weight-bold'>Fale conosco !</h3>
+                    <Form />
+                </div>
+
+                <Footer />
+            </div>
+        )
+    }
+} 

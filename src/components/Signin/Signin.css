@@ -1,0 +1,58 @@
+/* color: white;
+background: linear-gradient(to right, rgb(22, 34, 42), rgb(58, 96, 115)); */
+
+.bg{
+    background-image: url('../../assets/IMGTEST.png');
+    background-repeat: no-repeat;
+    background-position: bottom left;
+    /* background-attachment: fixed; */
+}
+
+@media(max-width:955px){
+    .signin-container {
+        /* font-size: small; */
+        margin-top: 20px;
+        display: flex;
+        flex-direction: column;
+    
+    }
+
+    .signin-container p,h1{
+        font-size: medium;
+    }
+
+    .signin-container .content{
+        flex-direction: column;
+        margin: 0px;
+        /* align-self: center; */
+    }
+
+    .bg{
+        /* background-position:  ; */
+    
+        background-image: url('../../assets/fundobranco.webp');
+        
+    } 
+    .control{
+        width: 75%;
+        align-self: flex-start;
+    }
+    .control2{
+        width: 100%;
+        /* margin-left: 8px; */
+        /* width: 30%; */
+        /* justify-items: center; */
+        
+    }
+    
+    video{
+        /* display: none; */
+        width: 550px;
+       
+        /* height: 300px; */
+    }
+ 
+
+  
+ 
+}

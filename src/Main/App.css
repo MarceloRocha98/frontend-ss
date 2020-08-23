@@ -1,0 +1,31 @@
+@import url('https://fonts.googleapis.com/css?family=Roboto:400,500,700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Poppins&display=swap');
+
+*{
+  box-sizing: border-box;
+  font:400 14px Poppins, sans-serif; /*400 é o regular no custom*/
+  /* font:400 14px Roboto, sans-serif; */
+  /* color: white; */
+  /* color: linear-gradient(to right, rgb(22, 34, 42), rgb(58, 96, 115)); */
+}
+
+body {
+    /* background-color: lawngreen ; */
+    margin: 0px;
+  -webkit-font-smoothing:antialiased; /*melhora a visualização da fonte pelo google chrome*/
+
+}
+
+
+.app{
+  margin-top: 0px;
+  margin-left: 0em;
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+  /* background: linear-gradient(to right, rgb(22, 34, 42), rgb(58, 96, 115));  */
+  background-color: white;
+  /* background: linear-gradient(to right, rgb(255, 216, 155), rgb(25, 84, 123)); */
+  /* background-color: rgba(13, 63, 70, 0.466); */
+  /* background-color:#f0f0f5; */
+}

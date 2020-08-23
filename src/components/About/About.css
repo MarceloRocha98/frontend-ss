@@ -1,0 +1,23 @@
+@import url("https://fonts.googleapis.com/css2?family=Archivo&display=swap");
+
+*{
+    font: 400 14px Archivo, sans-serif;
+}
+.backcolor{
+    background: linear-gradient(to right, rgb(22, 34, 42), rgb(58, 96, 115));
+    
+}
+
+.backcolortext{
+   color: white;
+}
+li{
+    margin: 1.2rem;
+    
+}
+
+ol{
+    width: 70%;
+    text-align: initial;
+}
+
