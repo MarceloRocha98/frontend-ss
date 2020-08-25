@@ -135,7 +135,8 @@ export default class Payment extends React.Component {
         api.defaults.headers['Accept']= `application/json;charset=ISO-8859-1`
      
 
-        api.defaults.headers['Access-Control-Allow-Origin'] = 'http://localhost:3000'
+        api.defaults.headers['Access-Control-Allow-Origin'] = 'https://frontend-ss-heroku.herokuapp.com/'
+        // api.defaults.headers['Access-Control-Allow-Origin'] = 'http://localhost:3000'
         api.defaults.headers['Access-Control-Allow-Methods'] = `POST`
         api.defaults.headers['Access-Control-Allow-Headers'] = `Content-Type, Accept, Origin`
         api.defaults.headers['Keep-Alive'] = `timeout=65`
