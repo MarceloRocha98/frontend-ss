@@ -141,8 +141,8 @@ export default class Payment extends React.Component {
         api.defaults.headers['Access-Control-Allow-Headers'] = `Content-Type, Accept, Origin`
         api.defaults.headers['Keep-Alive'] = `timeout=65`
       //  api.defaults.headers['Origin'] = `http://localhost:3000`
-        // api.defaults.headers.common['Access-Control-Allow-Credentials'] = `true`
-        // api.defaults.headers.common['Access-Control-Max-Age'] = 60
+        api.defaults.headers.common['Access-Control-Allow-Credentials'] = `true`
+        api.defaults.headers.common['Access-Control-Max-Age'] = 60
         console.log(JSON.stringify(body))
        
         api.post("https://ws.pagseguro.uol.com.br/recurring-payment/boletos?email=marceloteixeirar2014@gmail.com&token=d5e0f8f6-0e88-46cb-ad94-017e7fb210eb09ca31494dd686af69e0e16198f5cfa2e313-f257-4a30-baa5-d0d8422807ef", JSON.stringify(body))
