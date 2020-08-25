@@ -8,6 +8,10 @@ const api = axios.create({
     //     'Access-Control-Allow-Methods': 'POST',
     //     'Access-Control-Allow-Headers': 'Content-Type, Accept, Origin, Authorization',
     // },
+    //  
+    // headers: {   
+    //     'Access-Control-Allow-Origin': 'http://localhost:3000',
+    // }
 })
 
 const success = res => res
