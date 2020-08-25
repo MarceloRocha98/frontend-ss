@@ -7,6 +7,7 @@ import servicesVideo from '../../assets/videoInitial.mp4'
 import './Signin.css'
 import Footer from '../templates/Footer'
 
+
 export const userKey = '__userService'
 
 export default function Signin() {
@@ -51,9 +52,7 @@ export default function Signin() {
 
         
         <div className="signin-container d-flex flex-md-row bg justify-content-around">
-        
-
-           
+   
             {/*         
         <video width='400' height='300' autoPlay>
                 <source src={loggin} type="video/mp4"/>

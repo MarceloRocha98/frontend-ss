@@ -136,16 +136,14 @@ export default class Profile extends React.Component{
          
         return (
             <div
-                style={{
-                    // background: "linear-gradient(to right, rgb(100, 65, 165), rgb(42, 8, 69))"
-            }}
+            //   className='m-3'
             >
                 <Nav />
                 <div className='mt-5 pt-2'>
                     
                  
               
-             
+             <h4 className='text-center mb-4'> Uma foto de perfil que mostre seu rosto aumenta suas chances de conseguir serviços</h4>
                           
                     <form
                         encType="multipart/form-data"
@@ -155,7 +153,9 @@ export default class Profile extends React.Component{
                        
                     >
                         
-                        <div className="input-group mb-3">
+                        <div className="input-group mb-3 align-self-center"
+                        style={{width:'85%'}}
+                        >
   <div className="input-group-prepend">
     <span className="input-group-text" id="inputGroupFileAddon01">Upload</span>
   </div>
@@ -189,7 +189,8 @@ export default class Profile extends React.Component{
                             
                         <button
                             type='submit'
-                            className='btn btn-primary'
+                            className='btn btn-primary align-self-center'
+                            style={{width:'20%'}}
                             // onClick={e => {
                             //     this.handleSubmit()
                             //     // e.click()
