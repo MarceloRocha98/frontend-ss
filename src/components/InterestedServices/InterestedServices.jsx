@@ -95,13 +95,14 @@ export default class InterestedServices extends React.Component {
             // the function is executed automatically when the promise is constructed
 
             // after 1 second signal that the job is done with the result "done"
-            setTimeout(() => resolve("done"), 300);
+            setTimeout(() => resolve("done"), 1000);
         });
         Promise.all([data, promise]).then((e) => {  // pra resolver o problema do tempo
             this.setState({ users: users })
 
 
-            
+        console.log(users)
+        // alert('Entro aqui')
         let usersWithPic = users
         usersWithPic = usersWithPic.filter(user => {
            
@@ -345,6 +346,7 @@ export default class InterestedServices extends React.Component {
             console.log(usersWithPicObject)
             
         })
+        console.log(usersWithPic)
       
 
         if (loading) {
