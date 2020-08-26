@@ -131,7 +131,7 @@ export default class InterestedServices extends React.Component {
         // console.log(this.state.users)
         // console.log(`test acima`)
 
-        this.setState({ loading: false })
+        // this.setState({ loading: false })
         
         // if (users.length === 0) {
         //     this.setState({hadNoInteresse:1})
@@ -207,8 +207,15 @@ export default class InterestedServices extends React.Component {
         await api.get(`payment/${user.id}/${serviceId}`)
             .then(res => {
                // console.log(res.data.data)
-                const dados = res.data.data[0]
-                this.setState({ generatedBefore: dados.generatedBefore, payed: dados.payed, paymentLink: dados.paymentLink })
+                let dados=[]
+                if (res.data.data) {
+                    dados=res.data.data[0]
+                }
+                // const dados = res.data.data[0]
+                if (dados) {
+                    
+                    this.setState({ generatedBefore: dados.generatedBefore, payed: dados.payed, paymentLink: dados.paymentLink })
+                }
                 //console.log(this.state)
             })
         
@@ -247,6 +254,15 @@ export default class InterestedServices extends React.Component {
         }
 
  
+        let promise2 = new Promise(function (resolve, reject) {
+            // the function is executed automatically when the promise is constructed
+
+            // after 1 second signal that the job is done with the result "done"
+            setTimeout(() => resolve("done"), 600);
+        });
+        Promise.all([data, promise2]).then((e) => {  // pra resolver o problema do tempo
+            this.setState({ loading: false })
+        })
     }
 
     async handleRefuse(dat) { 
@@ -351,14 +367,21 @@ export default class InterestedServices extends React.Component {
 
         if (loading) {
             return (
-                <h1>Carregando
-
-                    <i class="fa fa-spinner fa-spin fa-3x fa-fw"></i>
-                    <span class="sr-only">Loading...</span>
-
-                </h1>
+              <div className='m-3 p-3 d-flex flex-column'>
+      
+      
+              <h1 className='text-center font-weight-bold'>Carregando
+              </h1>
+                <h5 className='text-center font-weight-bold'>Um momento, estamos preparando tudo para você</h5>
+                <p className='text-muted text-center'> Caso esteja nessa página a muito tempo tente atualiza-la</p>
+                <i class="fa fa-spinner fa-spin fa-3x fa-fw align-self-center m-3" style={{fontSize:'300px'}}></i>
+                <span class="sr-only">Loading...</span>
+      
+              </div>
+      
             )
-        }
+          }
+       
         if (!!finish1 && !!finish2) {
             
             return (
@@ -437,6 +460,7 @@ export default class InterestedServices extends React.Component {
 
                             <button type="button" style={{borderRadius:'8px'}} class="btn btn-warning"> <i class="fa fa-arrow-left " aria-hidden="true" size={16} color='#E02041'> <span className='text-decoration-none'> Voltar</span> </i></button>
                             </Link>
+                            <p className='text-muted text-center'> Para pedir reembolso do boleto, nos envie um email e as informações(nome,descrição, conteúdo e valor) do serviço</p>
                             <div class="alert alert-warning" role="alert">
                                 Serviço não tem usuários interessados no momento
                     </div>

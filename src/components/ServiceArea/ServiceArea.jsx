@@ -12,6 +12,7 @@ export default class ServiceArea extends React.Component {
         finish1: 0,
         finish2: 0,
         token: 0,
+        loading:true,
 
 
     }
@@ -110,6 +111,7 @@ export default class ServiceArea extends React.Component {
                 console.log(res.data.data)
                 this.setState({ finish1: res.data.data[0].finish1 })
                 this.setState({ finish2: res.data.data[0].finish2 })
+                this.setState({loading:false})
             })
             .catch(err => alert(err))
 
@@ -186,7 +188,25 @@ export default class ServiceArea extends React.Component {
         //console.log(this.state.chekingLocal1)
         //console.log(this.state.chekingLocal2)
 
-        const { finish1, finish2, token } = this.state
+        const { finish1, finish2, token,loading } = this.state
+
+        if (loading) {
+            return (
+              <div className='m-3 p-3 d-flex flex-column'>
+      
+      
+              <h1 className='text-center font-weight-bold'>Carregando
+              </h1>
+                <h5 className='text-center font-weight-bold'>Um momento, estamos preparando tudo para você</h5>
+                <p className='text-muted text-center'> Caso esteja nessa página a muito tempo tente atualiza-la</p>
+                <i class="fa fa-spinner fa-spin fa-3x fa-fw align-self-center m-3" style={{fontSize:'300px'}}></i>
+                <span class="sr-only">Loading...</span>
+      
+              </div>
+      
+            )
+          }
+       
 
         if (!chekingLocal2) {
             return (

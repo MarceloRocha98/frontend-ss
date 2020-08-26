@@ -47,7 +47,7 @@ export default class Home extends Component {
         api.defaults.headers.common['Authorization'] = `Bearer ${token}`
         
       }
-      this.setState({loading:false}) 
+      // this.setState({loading:false}) 
        
     }) 
 
@@ -120,11 +120,12 @@ export default class Home extends Component {
       // the function is executed automatically when the promise is constructed
 
       // after 1 second signal that the job is done with the result "done"
-      setTimeout(() => resolve("done"), 100);
+      setTimeout(() => resolve("done"), 1000);
   });
   Promise.all([servicesTest, promise]).then((e) => {  // pra resolver o problema do tempo
     console.log(services)
     this.setState({ services:test})    
+    this.setState({ loading:false})    
     console.log(test)
   })
     
@@ -232,7 +233,8 @@ export default class Home extends Component {
   });
   Promise.all([servicesTest, promise]).then((e) => {  // pra resolver o problema do tempo
   //  console.log(services)
-    this.setState({ services:test})    
+  this.setState({ services:test})    
+  this.setState({ loading:false})    
     console.log(test)
   })
    //   this.setState({ services:services})
@@ -299,11 +301,18 @@ export default class Home extends Component {
     
     if (loading) {
       return (
-        <h1>Carregando
-          <i class="fa fa-spinner fa-spin fa-3x fa-fw"></i>
+        <div className='m-3 p-3 d-flex flex-column'>
+
+
+        <h1 className='text-center font-weight-bold'>Carregando
+        </h1>
+          <h5 className='text-center font-weight-bold'>Um momento, estamos preparando tudo para você</h5>
+          <p className='text-muted text-center'> Caso esteja nessa página a muito tempo tente atualiza-la</p>
+          <i class="fa fa-spinner fa-spin fa-3x fa-fw align-self-center m-3" style={{fontSize:'300px'}}></i>
           <span class="sr-only">Loading...</span>
 
-        </h1>
+        </div>
+
       )
     }
  

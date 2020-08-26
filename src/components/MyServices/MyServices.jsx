@@ -204,13 +204,21 @@ export default class MyServices extends Component {
 
         if (loading) {
             return (
-                <h1>Carregando
-                    <i class="fa fa-spinner fa-spin fa-3x fa-fw"></i>
-                    <span class="sr-only">Loading...</span>
-
-                </h1>
+              <div className='m-3 p-3 d-flex flex-column'>
+      
+      
+              <h1 className='text-center font-weight-bold'>Carregando
+              </h1>
+                <h5 className='text-center font-weight-bold'>Um momento, estamos preparando tudo para você</h5>
+                <p className='text-muted text-center'> Caso esteja nessa página a muito tempo tente atualiza-la</p>
+                <i class="fa fa-spinner fa-spin fa-3x fa-fw align-self-center m-3" style={{fontSize:'300px'}}></i>
+                <span class="sr-only">Loading...</span>
+      
+              </div>
+      
             )
-        }
+          }
+       
 
         return (
 

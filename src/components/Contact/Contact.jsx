@@ -113,7 +113,9 @@ export default class Contact extends React.Component{
                     this.setState({ token: res.data.data[0].id })
                 }
               //  console.log(this.state.finish1, this.state.finish2)
-            }).catch(err=>alert(err))
+              this.setState({loading:false})
+            }).catch(err => alert(err))
+        
     }
 
  
@@ -228,7 +230,23 @@ export default class Contact extends React.Component{
 //             .then(res => {
 //                 console.log(res)
 //             })
-        
+if (loading) {
+    return (
+      <div className='m-3 p-3 d-flex flex-column'>
+
+
+      <h1 className='text-center font-weight-bold'>Carregando
+      </h1>
+        <h5 className='text-center font-weight-bold'>Um momento, estamos preparando tudo para você</h5>
+        <p className='text-muted text-center'> Caso esteja nessa página a muito tempo tente atualiza-la</p>
+        <i class="fa fa-spinner fa-spin fa-3x fa-fw align-self-center m-3" style={{fontSize:'300px'}}></i>
+        <span class="sr-only">Loading...</span>
+
+      </div>
+
+    )
+  }
+
         if (userOwner===1) { // colocar aqui se o usuário é dono do serviço
             return (
                 <div className='m-3'>
