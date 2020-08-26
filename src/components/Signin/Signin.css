@@ -7,6 +7,9 @@ background: linear-gradient(to right, rgb(22, 34, 42), rgb(58, 96, 115)); */
     background-position: bottom left;
     /* background-attachment: fixed; */
 }
+.logoMb{
+    display: none;
+}
 
 @media(max-width:955px){
     .signin-container {
@@ -28,31 +31,60 @@ background: linear-gradient(to right, rgb(22, 34, 42), rgb(58, 96, 115)); */
     }
 
     .bg{
-        /* background-position:  ; */
-    
-        background-image: url('../../assets/fundobranco.webp');
+        /* background-position: right ; */
         
+        background-image: url('../../assets/fundobranco.webp');
+        /* background-image: url('../../assets/IMGTEST2.png'); */
+        /* z-index: -1; */
     } 
     .control{
         width: 75%;
         align-self: flex-start;
     }
     .control2{
+        align-self: flex-start;
         width: 100%;
         /* margin-left: 8px; */
         /* width: 30%; */
         /* justify-items: center; */
         
     }
+    .al{
+        justify-content: center;
+        /* width: 100%; */
+        padding: 1em;
+        /* background-color: red; */
+    }
+
+    .bg .content {
+        /* z-index: 1; */
+        /* margin: 2em;
+        padding:2em; */
+    }
+
+
+   
     
     video{
-        /* display: none; */
-        width: 550px;
+        display: none;
+        /* width: 550px; */
        
         /* height: 300px; */
     }
  
 
+    .logoMb{ 
+        /* d-flex align-items-center justify-content-center */
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        
+        justify-content:center;
+        /* background-color: red; */
+    }
+
+    
   
  
 }
+

@@ -40,5 +40,10 @@ button{
     .video video{
         width: 500px;
     }
+
+    .register-container .content{
+        display: flex;
+        flex-direction: column;
+    }
 }
 

@@ -6,7 +6,7 @@ import servicesVideo from '../../assets/videoInitial.mp4'
 // import loggin from '../../assets/loggin.mp4'
 import './Signin.css'
 import Footer from '../templates/Footer'
-
+import logoMb from '../../assets/IMGTEST.png'
 
 export const userKey = '__userService'
 
@@ -57,7 +57,12 @@ export default function Signin() {
         <video width='400' height='300' autoPlay>
                 <source src={loggin} type="video/mp4"/>
             </video> */}
-
+                <div className='logoMb '>
+                    <img src={logoMb}
+                  width='25%'
+                        alt="" />
+                    <h1 className='font-weight-bold'>Seu Serviço</h1>
+    </div>
             <div className="content d-flex mt-3"
        
             >
@@ -107,14 +112,14 @@ export default function Signin() {
 
                 </div>       
 
-                <button className="control btn btn-success ml-3" style={{width:'75%'}} type='submit'>Entrar</button> 
+                <button className="control btn btn-success ml-2" style={{width:'85%'}} type='submit'>Entrar</button> 
             </form>
 
             </div>
             {/* <img src={img} className="rounded float-right img-fluid" style={{width:'50%'}} alt="img" /> */}
             <div className=' mt-3 d-md-flex align-self-center'>
 
-            <div className='d-md-flex flex-column' >
+            <div className='d-md-flex flex-column al' >
                 
             <video width='500' height='480' autoPlay>
                 <source src={servicesVideo} type="video/mp4"/>
@@ -123,7 +128,7 @@ export default function Signin() {
                         onClick={e => {
                             history.push('/About')
                         }}
-                        className='control2 btn btn-info align-self-center m-2'>
+                        className='control2 btn btn-info align-self-center m-2 '>
                         Saiba mais</button>
             </div>
            
