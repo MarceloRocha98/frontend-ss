@@ -332,7 +332,7 @@ export default class InterestedServices extends React.Component {
         let usersWithPicObject = []
         let data = usersWithPic.map(userId => {
             // const url = require(`../../../public/uploads/${userId}.jpg`)
-            const backendUrl='http://localhost:8080'
+            const backendUrl='https://backend-ss-heroku.herokuapp.com/'
             const caminho_img=`/public/uploads/${userId}.jpg`
             
             
