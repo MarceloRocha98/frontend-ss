@@ -42,8 +42,11 @@ render() {
         onSubmit={this.handleSubmit.bind(this)}
     >
   <div className="form-group p-2">
-    <label for="formGroupExampleInput" className='font-weight-bold'>Email:</label>
-            <input
+          <label for="formGroupExampleInput" className='font-weight-bold'
+            style={{color:"white"}}
+          >Email:</label>
+          <input
+             style={{fontSize:'17px'}}
                 className="form-control text-primary"
                 type="email"
                 name="email"
@@ -52,8 +55,12 @@ render() {
                 placeholder="Digite seu email" />
   </div>
   <div className="form-group p-2">
-    <label for="formGroupExampleInput2" className='font-weight-bold'>Assunto:</label>
-            <input
+          <label for="formGroupExampleInput2"
+            className='font-weight-bold'
+            style={{color:"white"}}
+          >Assunto:</label>
+          <input
+            style={{fontSize:'17px'}}
                 className="form-control"
                 type="text"
                 name="subject"
@@ -63,8 +70,13 @@ render() {
             />
   </div>
   <div className="form-group p-2">
-    <label for="formGroupExampleInput4" className='font-weight-bold'>Mensagem:</label>
-    <textarea 
+          <label
+             style={{color:"white"}}
+            for="formGroupExampleInput4"
+            className='font-weight-bold'
+          >Mensagem:</label>
+          <textarea 
+            style={{fontSize:'17px'}}
     className="form-control" 
     type="textarea"
     name="message"
