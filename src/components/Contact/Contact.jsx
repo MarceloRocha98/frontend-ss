@@ -312,7 +312,7 @@ export default class Contact extends React.Component{
   <p className='text-center'>Atenção !</p>
   <p className='text-center'>Somente clicke no botão "Sim,ele chegou" se o usuario ja estiver no local onde irá realizar o serviço</p>
 </div>
-                        <Link to='serviceArea' className='align-self-center'>
+                        <Link to='serviceArea' className='align-self-center m-3'>
                         <button
                             className='btn btn-success'
                             onClick={e => {
@@ -343,7 +343,7 @@ export default class Contact extends React.Component{
                     </div>
                     
                      <button
-                         className='btn btn-info align-self-center'
+                         className='btn btn-info align-self-center m-3'
                          onClick={e => {
                              alert(`O código do serviço é: ${token}`)
                          }}
@@ -439,7 +439,7 @@ export default class Contact extends React.Component{
                              <p className='text-center'>Atenção !</p>
                              <p className='text-center'>Somente clicke no botão "Sim,estou aqui" se estiver no local onde irá realizar o serviço</p>
                          </div>
-                         <Link to='ServiceArea' className='align-self-center'>
+                         <Link to='ServiceArea' className='align-self-center m-3'>
                              <button
                                  className='btn btn-success mt-4 align-self-center'
                                  onClick={e => {

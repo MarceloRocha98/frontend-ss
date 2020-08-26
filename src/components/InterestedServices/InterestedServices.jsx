@@ -377,7 +377,7 @@ export default class InterestedServices extends React.Component {
                     </div>
                     
                     <button
-                        className='btn btn-info align-self-center'
+                        className='btn btn-info align-self-center m-3'
                         onClick={e => {
                             alert(`O código do serviço é: ${token}`)
                         }}
@@ -405,7 +405,7 @@ export default class InterestedServices extends React.Component {
 
                         <Link to='Contact'>
                             <button
-                                className='btn btn-info'
+                                className='btn btn-info m-3'
                                 onClick={e => {
                                     const info = {
                                         email: dataOfinProgressUser.email,
