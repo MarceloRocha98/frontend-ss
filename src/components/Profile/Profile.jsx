@@ -145,7 +145,7 @@ export default class Profile extends React.Component{
                  
               
              <h4 className='text-center mb-4'> Uma foto de perfil que mostre seu rosto aumenta suas chances de conseguir serviços</h4>
-                          
+                          <p className='text-center text-muted'> Anexe somente fotos com formato .jpg </p>
                     <form
                         encType="multipart/form-data"
                         onSubmit={e => {

@@ -36,7 +36,7 @@ export default class Navig extends Component {
                 picUploaded= res.data.data[0].picUploaded
             })
         if (picUploaded === 1) {
-            const backendUrl='http://localhost:8080'
+            const backendUrl='https://backend-ss-heroku.herokuapp.com/'
             const caminho_img=`/public/uploads/${userId}.jpg`
             
             // const img = require(`../../../public/uploads/${user.id}.jpg`)
