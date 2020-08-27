@@ -46,23 +46,26 @@ export default class Contato extends React.Component{
                     <div className='d-flex flex-column m-3'>
                         <div className='m-2'>
 
-                    <a  href="mailto:seuservico.suporte@gmail.com"><i style={{fontSize:'25px'}} class="fa fa-envelope text-decoration-none" aria-hidden="true">seuservico.suporte@gmail.com</i></a>
+                    <a  href="mailto:seuservico.suporte@gmail.com"><i style={{fontSize:'18px'}} class="fa fa-envelope text-decoration-none" aria-hidden="true">seuservico.suporte@gmail.com</i></a>
                         </div>
                         {/* <i class="fa fa-envelope" aria-hidden="true">seuservico.suporte@gmail.com</i> */}
                         {/* <i class="fa fa-whatsapp" aria-hidden="true">11954479511</i> */}
                         <p>
-           <a style={{fontSize:'25px'}} className='m-2 ' href="https://api.whatsapp.com/send?phone=5511954479511">      
+           <a style={{fontSize:'18px'}} className='m-2 ' href="https://api.whatsapp.com/send?phone=5511954479511">      
            <i class="fa fa-whatsapp text-decoration-none" aria-hidden="true">(11)95447-9511</i>
            </a>
        </p>
                     </div>
 
                     <div
-                 className='contato-conteiner m-3'
+                        className='contato-conteiner m-3'
+                  
                     >
                         <h3 className='text-center font-weight-bold'
                             style={{
-                            color:'white'
+                                color: 'white',
+                                margin: '3px',
+                                padding:'4px'
                         }}
                         >Fale conosco !</h3>
                     <Form />
