@@ -586,6 +586,7 @@ export default class InterestedServices extends React.Component {
                         <h3 className='text-center'>Para ver usuarios interessados no serviço e contratá-los para o realizar, o boleto deve estar pago</h3> 
                        <p className='text-muted text-center font-weight-bold'>Você pode pedir reembolso do boleto </p>
                        <p className='text-muted text-center'> Para pedir reembolso do boleto, nos envie um email e as informações(nome,descrição, conteúdo e valor) do serviço</p>
+                       <h4 className='text-center font-weight-bold m-3 p-2'> Seu serviço tem {users.length} usuário(s) interessado(s) no momento</h4>
                         <Payment />
                          <Footer />
                     </div>
@@ -606,7 +607,8 @@ export default class InterestedServices extends React.Component {
                         <h4 className='text-center m-2'>O Boleto ja foi gerado por você, pode acessa-lo clickando  <a href={paymentLink}> Aqui</a> </h4>
                         <h4 className='text-center m-2 text-muted'> A taxa de serviço é de 2.49 R$</h4>
                         <h4 className='text-center mt-3'>Se preferir, acesse pela URL: {paymentLink}</h4> 
-                    <Footer />
+                        <h4 className='text-center font-weight-bold m-3 p-2'> Seu serviço tem {users.length} usuário(s) interessado(s) no momento</h4>
+                        <Footer />
                     </div>
                 )
             }
