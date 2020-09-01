@@ -17,6 +17,21 @@ export default class ServiceArea extends React.Component {
 
     }
     async componentDidMount() {
+
+        // let date = new Date() 
+        // let dia = date.getDate()
+        // let mes = date.getMonth()
+        // let ano=date.getFullYear()
+        // // console.log(`${dia}/${mes+1}/${ano}`)
+        // let dateNow = `${dia}/${mes + 1}/${ano}`
+        
+        // let date = new Date() 
+        // let hours = date.getHours()
+        // let minutes = date.getMinutes()
+        // let seconds=date.getSeconds()
+        // // console.log(`${hours}:${minutes}:${seconds}`)
+        // let hour = `${hours}:${minutes}:${seconds}`
+
         const user = JSON.parse(localStorage.getItem(userKey))
 
         // console.log(user,typeof(user))
@@ -92,6 +107,20 @@ export default class ServiceArea extends React.Component {
             const serviceId = data.serviceId
             //  const owner=1
          
+            // let date = new Date() 
+            // let dia = date.getDate()
+            // let mes = date.getMonth()
+            // let ano=date.getFullYear()
+            // // console.log(`${dia}/${mes+1}/${ano}`)
+            // let dateNow = `${dia}/${mes + 1}/${ano}`
+            
+            // let date = new Date() 
+            // let hours = date.getHours()
+            // let minutes = date.getMinutes()
+            // let seconds=date.getSeconds()
+            // // console.log(`${hours}:${minutes}:${seconds}`)
+            // let hour = `${hours}:${minutes}:${seconds}`
+
 
             await api.get(`serviceArea/${id}/${serviceId}?userId2=${userId2}`)
                 .then(res => {
