@@ -19,7 +19,21 @@ export default class About extends React.Component {
       this.setState({loggedIn:true})
     }
 
+    // let date = new Date() 
+    // let dia = date.getDate()
+    // let mes = date.getMonth()
+    // let ano=date.getFullYear()
+    // // console.log(`${dia}/${mes+1}/${ano}`)
+    // let dateNow = `${dia}/${mes + 1}/${ano}`
+    
+   
+    // let hours = date.getHours()
+    // let minutes = date.getMinutes()
+    // let seconds=date.getSeconds()
+    // // console.log(`${hours}:${minutes}:${seconds}`)
+    // let hour = `${hours}:${minutes}:${seconds}`
 
+    // console.log(`${dateNow}, ${hour}`)
 
 
     }

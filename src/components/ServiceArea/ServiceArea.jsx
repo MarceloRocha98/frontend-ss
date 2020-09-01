@@ -62,6 +62,7 @@ export default class ServiceArea extends React.Component {
 
 
         const data = JSON.parse(localStorage.getItem('serviceAreaInfo'))
+        const serviceId = data.serviceId
         console.log(data)
         console.log(data.userOwner)
 
@@ -70,7 +71,7 @@ export default class ServiceArea extends React.Component {
             this.setState({ chekingLocal1 })
             const id = data.userId1
 
-            await api.put(`serviceArea/${id}/${chekingLocal1}`)
+            await api.put(`serviceArea/${id}/${chekingLocal1}?serviceId=${serviceId}`)
                 .then(res => {
                     // console.log(res)
                     //    alert('sucesso')
@@ -79,7 +80,7 @@ export default class ServiceArea extends React.Component {
                 })
 
             const userId2 = data.userId2
-            const serviceId = data.serviceId
+      
 
             await api.get(`serviceArea/${id}/${serviceId}?userId2=${userId2}`)
                 .then(res => {
@@ -95,7 +96,7 @@ export default class ServiceArea extends React.Component {
             this.setState({ chekingLocal2 })
             const id = data.userId1
 
-            await api.put(`serviceArea/${id}/${undefined}?chekingLocal2=${chekingLocal2}`)
+            await api.put(`serviceArea/${id}/${undefined}?chekingLocal2=${chekingLocal2}?serviceId=${serviceId}`)
                 .then(res => {
                     // console.log(res)
                     // alert('sucesso')
