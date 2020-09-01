@@ -2,21 +2,34 @@ import React from 'react'
 import { Link } from 'react-router-dom'
 import './About.css'
 import Footer from '../templates/Footer'
+import { userKey } from '../Signin/Signin'
+import Nav from '../templates/Nav'
 export default class About extends React.Component {
+  state = {
+    loggedIn:false,
+  }
+  componentDidMount() {
+    const user = JSON.parse(localStorage.getItem(userKey))
+    if (!!user) {
+      this.setState({loggedIn:true})
+    }
 
+    }
     render() {
-
+      const {loggedIn } = this.state
 
         return (
           <div className='d-flex flex-column m-3 backcolor'>
-            <div className='m-2'>
+
+            {!!loggedIn? <div> <Nav /> </div> : <div className='m-2'>
 
               
-              <Link to='/Home'>
-          
-                               <button type="button" style={{borderRadius:'8px'}} class="btn btn-warning"> <i class="fa fa-arrow-left " aria-hidden="true" size={16} color='#E02041'> <span className='text-decoration-none'> Voltar</span> </i></button>
-                        </Link>
-            </div>
+<Link to='/Home'>
+
+                 <button type="button" style={{borderRadius:'8px'}} class="btn btn-warning"> <i class="fa fa-arrow-left " aria-hidden="true" size={16} color='#E02041'> <span className='text-decoration-none'> Voltar</span> </i></button>
+          </Link>
+</div> }
+           
  
 <h3 className='text-center m-3 backcolortext font-weight-bold'>Como funcionamos ? </h3>
                 
