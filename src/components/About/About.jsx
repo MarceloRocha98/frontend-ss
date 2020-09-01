@@ -4,15 +4,41 @@ import './About.css'
 import Footer from '../templates/Footer'
 import { userKey } from '../Signin/Signin'
 import Nav from '../templates/Nav'
+import api from '../../services/api'
+
 export default class About extends React.Component {
   state = {
     loggedIn:false,
   }
-  componentDidMount() {
+  async componentDidMount() {
     const user = JSON.parse(localStorage.getItem(userKey))
+
+    const res = await api.post('validateToken', user)
+    .then(resp => {
+        // console.log(resp.data)
+        if (!resp.data) {
+
+            //   history.push('/Signin')
+            localStorage.removeItem(userKey)
+            alert('Sua sessão expirou, entre novamente para continuar')
+            this.props.history.push('/Signin')
+
+        }
+        if (resp.data) {
+            console.log(user.token)
+            const token = (user.token)
+            api.defaults.headers.common['Authorization'] = `Bearer ${token}`
+
+        }
+        //   this.setState({ loading: false })
+
+    })
+
     if (!!user) {
       this.setState({loggedIn:true})
     }
+
+
 
     }
     render() {
