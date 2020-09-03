@@ -17,7 +17,11 @@ export default class Profile extends React.Component{
     state = {
         file: '',
         actualUrl: '',
-        preview:'',
+        preview: '',
+        aboutMe: '',
+        aboutMePreview: '',
+        avaliation: 0,
+        totalAvaliations:0,
     }
 
     async componentDidMount() {
@@ -78,6 +82,24 @@ export default class Profile extends React.Component{
             this.setState({ actualUrl: img })
         }
        
+        await api.get(`profile/${user.id}`)
+            .then(res => {
+                // console.log(res.data.data[0].aboutMe)
+                this.setState({ aboutMePreview: res.data.data[0].aboutMe })
+                
+                // console.log(res.data.data[0])
+                const avaliationsPoints = res.data.data[0].avaliationsPoints
+                const totalAvaliations = res.data.data[0].totalAvaliations
+
+                if(totalAvaliations !==0 ){
+                    const avaliation = avaliationsPoints / totalAvaliations
+                    this.setState({ totalAvaliations, avaliation })
+                    
+                    
+                }
+                // console.log(avaliationsPoints,totalAvaliations)
+            })
+            // .catch(err=>alert(err))
         
     }
 
@@ -131,8 +153,38 @@ export default class Profile extends React.Component{
                 alert(err)
             })
     }
+
+    async handleAboutMe(e) {
+        // e.preventDefault()
+        const { aboutMe,aboutMePreview } = this.state
+        const obj = {
+            aboutMe,
+        }
+        const user = JSON.parse(localStorage.getItem(userKey))
+        const id=user.id
+   
+        if (aboutMePreview === '') {
+            
+            await api.post(`profile/${id}`,obj)
+            .then(res => {
+                alert('informações alteradas com sucesso, atualize a pagina')
+            })
+            .catch(err => {
+                alert(err)
+            })
+        } else {
+            await api.put(`profile/${id}`, obj)
+                .then(res => {
+                    alert('informações alteradas, atualize a pagina')
+                })
+                .catch(err => {
+                    alert(err)
+                })
+        }
+
+        }
     render() {
-        const { file,actualUrl, preview } =this.state
+        const { file,actualUrl, preview, aboutMePreview, avaliation, totalAvaliations } =this.state
 
          
         return (
@@ -236,7 +288,9 @@ export default class Profile extends React.Component{
                 {actualUrl !== '' && <div>
                 
                     <div>
-                    <p className='font-weight-bold text-center m-3 mt-5'>Foto de perfil atual:</p>
+                        <p
+                             style={{fontSize:"15px"}}
+                            className='font-weight-bold text-center m-3 mt-5'>Foto de perfil atual:</p>
                     <img
                         width='30%'
                         className='img-fluid rounded mx-auto d-block rounded-circle mb-3'
@@ -246,6 +300,61 @@ export default class Profile extends React.Component{
                     </div>
                 </div>}
 
+                {totalAvaliations !== 0 &&
+                    <div
+                className='m-4 p-2'    
+                >
+                    <h5
+                        
+                        className='font-weight-bold text-center'>
+                        
+                       
+                        Sua nota atual é {avaliation} de 10
+                        </h5>
+                    </div>}
+
+
+                {aboutMePreview !== '' &&
+                    <div
+                    className='m-4 p-2'
+                    // style={{ border: 'solid 1px' }}
+                >
+                    <h5
+                        
+                        className='font-weight-bold text-center'>Sobre mim:</h5>
+                    <p
+                        className='p-2 text-center'
+                        style={{fontSize:"15px"}}
+                    >{aboutMePreview}</p>
+                    
+                    </div>}
+                
+                
+
+                <div className='d-flex flex-column m-2'>
+
+                
+                <div className="form-group m-3" style={{ border: "solid 1px" }} >
+                    <label for='textArea'
+                        className='font-weight-bold'
+                        style={{fontSize:"20px"}}
+                        > Escreva sobre você </label>
+                    <textarea id='textArea'
+                        className='form-control'
+                            rows='4'
+                            onChange={e=>this.setState({aboutMe:e.target.value})}
+                        placeholder='Essas informações serão exibidas aos outros usuários'
+                        ></textarea>
+ 
+                    </div>
+                <button
+                    onChange={e=>console.log('q')}
+                    // className='align-self-center'
+                    onClick={(e) =>
+                        this.handleAboutMe(e)
+                    }
+                    className='btn btn-success'>Enviar</button>
+                        </div>
                 <Footer />
 
             </div>

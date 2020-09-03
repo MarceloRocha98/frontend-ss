@@ -1,8 +1,8 @@
 import axios from 'axios'
 
 const api = axios.create({
-    // baseURL: 'http://localhost:8080', //abaixo colocado
-    baseURL: 'https://backend-ss-heroku.herokuapp.com/', //abaixo colocado
+    // baseURL: 'https://backend-ss-heroku.herokuapp.com/', // URL de PRODUÇÃO
+    baseURL: 'http://localhost:8080', // URL de DESENVOLVIMENTO
     // headers: {
     //     'Access-Control-Allow-Origin': 'http://localhost:3000',
     //     'Access-Control-Allow-Methods': 'POST',

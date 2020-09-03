@@ -15,6 +15,7 @@ import About from '../components/About/About'
 import Contato from '../components/Contato/Contato'
 import Termos from '../components/Termos/Termos'
 import Profile from '../components/Profile/Profile'
+import PublicProfile from '../components/PublicProfile/PublicProfile'
 
 
 export default props =>
@@ -35,4 +36,5 @@ export default props =>
         <PrivateRoute path='/Payment' component={Payment} />
         <PrivateRoute path='/Contato' component={Contato} />
         <PrivateRoute path='/Profile' component={Profile} />
+        <PrivateRoute path='/publicProfile' component={PublicProfile} />
     </Switch>

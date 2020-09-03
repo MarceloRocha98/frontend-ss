@@ -30,6 +30,7 @@ export default class InterestedServices extends React.Component {
 
 
     async componentDidMount() {
+        // console.log(this.props)
         const user = JSON.parse(localStorage.getItem(userKey))
 
         // console.log(this.props)
@@ -539,7 +540,15 @@ export default class InterestedServices extends React.Component {
                                               >Motivo</button>
                                         }
                         
-                                        <div className='d-flex'>
+                                            <div className='d-flex'>
+                                                <button
+                                                    onClick={e => {
+                                                        localStorage.setItem('PublicProfile',user.id)
+                                                        this.props.history.push('/PublicProfile')
+                                                    }}
+                                                    className='btn btn-primary'>
+                                                   Sobre o usuário
+                                                </button>
                                             <Link to="MyServices">
                                                 <button type="button"
                                                     className="btn btn-success mr-1 m-2"
