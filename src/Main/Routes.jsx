@@ -16,15 +16,23 @@ import Contato from '../components/Contato/Contato'
 import Termos from '../components/Termos/Termos'
 import Profile from '../components/Profile/Profile'
 import PublicProfile from '../components/PublicProfile/PublicProfile'
+import NewPassword from '../components/ResetPassword/NewPassword'
+import Start from '../components/start/Start'
+import AboutUs from '../components/start/AboutUs'
+import ContactInitial from '../components/start/ContactInitial'
 
 
 export default props =>
     <Switch>
-        <Route exact path='/' component={Signin} />
+        <Route exact path='/' component={Start} />
         <Route path='/Register' component={Register} />
         <Route path='/Signin' component={Signin} />
         <Route path='/About' component={About} />
         <Route path='/Termos' component={Termos} />
+        <Route path='/Nasdkoakkdsopwoalsndjawsds' component={NewPassword} />
+        <Route path='/Start' component={Start} />
+        <Route path='/AboutUs' component={AboutUs} />
+        <Route path='/ContactInitial' component={ContactInitial} />
 
         <PrivateRoute path='/Home' component={Home} />
         <PrivateRoute path='/MyServices' component={MyServices} />

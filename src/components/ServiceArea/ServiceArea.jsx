@@ -2,7 +2,7 @@ import React from 'react'
 import { userKey } from '../Signin/Signin'
 import api from '../../services/api'
 import { Link } from 'react-router-dom'
-
+import './ServiceArea.css'
 
 export default class ServiceArea extends React.Component {
 
@@ -12,7 +12,9 @@ export default class ServiceArea extends React.Component {
         finish1: 0,
         finish2: 0,
         token: 0,
-        loading:true,
+        loading: true,
+        control: 0,
+        avaliated:0,
 
 
     }
@@ -180,6 +182,54 @@ export default class ServiceArea extends React.Component {
             .catch(err => alert(err))
     }
 
+    async handleNota(nota) {
+        const info = JSON.parse(localStorage.getItem('contact'))
+        const id=info.id
+        // alert(info.id)
+        let obj = {
+            condit:1,
+            avaliation:nota
+        }
+        
+
+        await api.get(`profile/${id}`)
+            .then(res => {
+                // console.log(res.data.data.length!==0)
+                if (res.data.data.length!==0) {
+                    // console.log(res.data.data[0])
+                    // console.log(res.data.data)
+                    const avaliationsPoints = res.data.data[0].avaliationsPoints
+                    const totalAvaliations = res.data.data[0].totalAvaliations
+                    
+                    obj.avaliationsPoints = avaliationsPoints
+                    obj.totalAvaliations=totalAvaliations
+                    // console.log(obj)
+                    
+                } else {
+                    
+                    const avaliationsPoints = 0
+                    const totalAvaliations = 0
+                    
+                    obj.avaliationsPoints = avaliationsPoints
+                    obj.totalAvaliations=totalAvaliations
+                    // console.log(obj)
+                }
+                // console.log(res)
+            })
+
+        await api.put(`profile/${id}`,obj)
+            .then(res => {
+                console.log(res)
+                alert('Nota atribuida com sucesso')
+                this.setState({avaliated:1})
+                
+            })
+            .catch(err => {
+                console.log(err)
+                alert('Erro')
+            })
+    }
+
     render() {
         const info = JSON.parse(localStorage.getItem('contact'))
         const { chekingLocal2 } = this.state
@@ -189,7 +239,10 @@ export default class ServiceArea extends React.Component {
         //console.log(this.state.chekingLocal1)
         //console.log(this.state.chekingLocal2)
 
-        const { finish1, finish2, token,loading } = this.state
+        const { finish1, finish2, token, loading,avaliated } = this.state
+        
+        let {control } =this.state
+
 
         if (loading) {
             return (
@@ -247,9 +300,9 @@ export default class ServiceArea extends React.Component {
 
         if (data.userOwner === 1 && (chekingLocal1 !== false && chekingLocal2 !== false) && (finish1 === 0 || finish2 === 0)) { //dono do serviço
             // console.log(finish1,finish2)
-           
+           let notas=[0,1,2,3,4,5,6,7,8,9,10]
             return (
-                <div className='d-flex flex-column'>
+                <div className='d-flex flex-column m-1'>
 
 
                     
@@ -264,15 +317,44 @@ export default class ServiceArea extends React.Component {
                             onClick={e => {
                                 console.log(e.target.value)
                                 this.handleFinish(e.target.value)
+                               this.setState({control:1})
                                 //console.log(e.target.value==='finish2')
                             }}
                         />
                         <label class="form-check-label" for="defaultCheck1">
                             Serviço finalizado
+                             
   </label>
+  </div>
+                        {(control === 1 && avaliated=== 0)&&
+                            
+                            <div className='mt-5 pt-5 d-flex flex-column'>
+                            <h4
+                                className='text-center font-weight-bold'
+                        > Dê uma nota para o {info.name}</h4>
+
+                        <ul style={{ listStyle: "none" }}
+                            className='d-flex flex-row align-self-center'>
+                            
+                        {notas.map(nota => (
+                            
+                            <li
+                                key='nota'
+                                className='avaliation font-weight-bold p-3'
+                                style={{border:"solid 1px",borderRadius:"20px"}}
+                                value={nota}
+                                onClick={e=>this.handleNota(nota)}
+                            >
+                                {nota}</li>
+                            
+                        ))}
+                            </ul>
+
+                
+                        </div>}
+                    {control === 1 &&   <h5 className='text-muted text-center mt-3'>Avise o {info.name} para selecionar "serviço finalizado" e atualize a página</h5>}
 
 
-                    </div>
                 </div>
             )
         }
@@ -300,7 +382,34 @@ export default class ServiceArea extends React.Component {
             )
         }
 
-        if (finish1 !==0  && finish2 !== 0) {
+        if (data.userOwner === 1 && finish1 !== 0 && finish2 !== 0 && avaliated === 1) {
+            return (
+             
+         
+            <div className='mt-4 d-flex flex-column'>
+                    
+            <div className="float-left">
+
+            <Link to='Home'>
+
+            <button type="button" style={{borderRadius:'8px'}} class="btn btn-warning"> <i class="fa fa-arrow-left " aria-hidden="true" size={16} color='#E02041'> <span className='text-decoration-none'> Voltar</span> </i></button>
+</Link>
+            </div>
+            <p className='text-center font-weight-bold'> Serviço realizado, clique no botão para ver o código do serviço </p>
+            {/* <p className='text-center'> O pagamento será efetuado em até 3 dias úteis, caso tenha problemas nos contate e informe o código do serviço</p> */}
+            <button
+                className='btn btn-info align-self-center'
+                onClick={e => {
+                    this.token()
+                }}
+            >Código do serviço</button>
+        </div>
+        
+            )
+        }
+            
+
+        if (data.userOwner===0 && finish1 !==0  && finish2 !== 0) {
             console.log(finish1,finish2)
                
             return (
@@ -343,11 +452,30 @@ export default class ServiceArea extends React.Component {
         //         <div>test</div>
         //     )
         // }
+     
         return (
-            <div>
-                serviço finalizado
-                 {/* token {token} */}
+             
+         
+            <div className='mt-4 d-flex flex-column'>
+                    
+            <div className="float-left">
+
+            <Link to='Home'>
+
+            <button type="button" style={{borderRadius:'8px'}} class="btn btn-warning"> <i class="fa fa-arrow-left " aria-hidden="true" size={16} color='#E02041'> <span className='text-decoration-none'> Voltar</span> </i></button>
+</Link>
             </div>
-        )
+            <p className='text-center font-weight-bold'> Serviço realizado, clique no botão para ver o código do serviço </p>
+            {/* <p className='text-center'> O pagamento será efetuado em até 3 dias úteis, caso tenha problemas nos contate e informe o código do serviço</p> */}
+            <button
+                className='btn btn-info align-self-center'
+                onClick={e => {
+                    this.token()
+                }}
+            >Código do serviço</button>
+        </div>
+        
+            )
+        
     }
 }

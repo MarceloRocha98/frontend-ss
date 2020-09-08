@@ -4,6 +4,7 @@ import './About.css'
 import Footer from '../templates/Footer'
 import { userKey } from '../Signin/Signin'
 import Nav from '../templates/Nav'
+import { timers } from 'jquery'
 
 
 export default class About extends React.Component {
@@ -46,10 +47,12 @@ export default class About extends React.Component {
             {!!loggedIn? <div> <Nav /> </div> : <div className='m-2'>
 
               
-<Link to='/Home'>
 
-                 <button type="button" style={{borderRadius:'8px'}} class="btn btn-warning"> <i class="fa fa-arrow-left " aria-hidden="true" size={16} color='#E02041'> <span className='text-decoration-none'> Voltar</span> </i></button>
-          </Link>
+
+              <button
+                onClick={e=>this.props.history.goBack()}
+                type="button" style={{ borderRadius: '8px' }} class="btn btn-warning"> <i class="fa fa-arrow-left " aria-hidden="true" size={16} color='#E02041'> <span className='text-decoration-none'> Voltar</span> </i></button>
+        
 </div> }
            
  

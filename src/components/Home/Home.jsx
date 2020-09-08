@@ -5,6 +5,7 @@ import './Home.css'
 import { userKey } from '../Signin/Signin'
 import Nav from '../templates/Nav'
 import { inArray } from 'jquery'
+import {Dropdown} from 'react-bootstrap'
 // import Footer from '../templates/Footer'
 
 export default class Home extends Component {
@@ -16,13 +17,17 @@ export default class Home extends Component {
     arrayPages: [],
     loading: true,
     search: '',
-    allservices:[],
+    searchLocat:"",
+    allservices: [],
+    searchName: 1,
+    searchLocation:0,
    
   }
 
   async componentDidMount() { // chama dps q o comoponente é feito. 
     const userData = JSON.parse(localStorage.getItem(userKey))
-     
+
+
     console.log(this.props)
       
     if (!userData) {
@@ -260,7 +265,7 @@ export default class Home extends Component {
     const { page } = this.state
     let { arrayPages } = this.state
     const { loading } = this.state
-    const { search } = this.state
+    let { search,searchName,searchLocation, searchLocat} = this.state
     const { limit } = this.state
 
     const {allservices } =this.state
@@ -277,16 +282,25 @@ export default class Home extends Component {
     
     let filteredServices=[]
     if (!!search) {
-      console.log(allservices)
-         filteredServices = allservices.filter(e => {
-        let condition = e.name.toLowerCase().indexOf(search.toLowerCase())
-        return condition !=-1
-      })
-    } else {
+      if (searchLocation === 1) {
         filteredServices = services.filter(e => {
-        let condition = e.name.toLowerCase().indexOf(search.toLowerCase())
-        return condition !=-1
-      })
+        //  alert('Entro')
+          let condition = e.location.toLowerCase().indexOf(search.toLowerCase())
+          return condition !=-1
+        })
+      }
+      if (searchName === 1) {
+        filteredServices = services.filter(e => {
+          let condition = e.name.toLowerCase().indexOf(search.toLowerCase())
+          return condition !=-1
+        })
+      }
+    } else {
+      filteredServices=allservices
+    
+
+      
+  
     }
     
 
@@ -333,9 +347,29 @@ export default class Home extends Component {
           <div className='m-3'>
             <h1 className='text-center badge badge-warning text-wrap m-2'>Serviços</h1>
             <div className='d-flex flex-row m-2'>
+           
+            <Dropdown>
+  <Dropdown.Toggle variant="info" id="dropdown-basic">
+  <i class="fa fa-search mt-2" aria-hidden="true"></i>
+  </Dropdown.Toggle>
 
-            <i class="fa fa-search mt-2" aria-hidden="true"></i>
-            <input
+  <Dropdown.Menu>
+                  <Dropdown.Item onClick={e => {
+                  this.setState({searchName:1})
+                  this.setState({searchLocation:0})
+                    
+    }}>Filtrar por nome</Dropdown.Item>
+                  <Dropdown.Item onClick={e => {
+                    this.setState({searchName:0})
+                    this.setState({searchLocation:1})
+    }}>Filtrar por local</Dropdown.Item>
+    
+  </Dropdown.Menu>
+</Dropdown>
+
+              
+
+<input
               
               type='text'
               className='form-control'
@@ -343,11 +377,15 @@ export default class Home extends Component {
               value={search}
               onChange={e => {
                 this.setState({ search: e.target.value })
+  
                 // console.log(search)
                 // console.log(services)
               }}
               
               />
+
+              
+          
               </div>
           </div>
 
@@ -411,7 +449,10 @@ export default class Home extends Component {
               {filteredServices.map(e => (
                 
                 <div class="card text-white bg-info mb-3 mt-4 ml-2 mr-2" style={{ width: "18rem" }}>
-                  <div class="card-header text-center">{e.name}</div>
+                  <div class="card-header text-center">
+                  <p>{e.name}</p>
+                  <p>Local: {e.location}</p>
+                  </div>
                   <div class="card-body">
                     <h5 class="card-title">{e.description}</h5>
                     {/* <p class="card-text">{e.content}</p> */}

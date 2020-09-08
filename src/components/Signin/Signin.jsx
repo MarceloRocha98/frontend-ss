@@ -1,12 +1,14 @@
 import React,{useState} from 'react'
 import { useHistory, Link } from 'react-router-dom'
 import api from '../../services/api'
+import * as emailjs from 'emailjs-com'
 import { data } from 'jquery'
 import servicesVideo from '../../assets/videoInitial.mp4'
 // import loggin from '../../assets/loggin.mp4'
 import './Signin.css'
 import Footer from '../templates/Footer'
-import logoMb from '../../assets/IMGTEST.png'
+import logotipo from '../../assets/logotipo.png'
+
 
 export const userKey = '__userService'
 
@@ -14,6 +16,7 @@ export default function Signin() {
     const [email,setEmail]=useState('')
     const [password, setPassword] = useState('')
     const [token, setToken] = useState('')
+    const [recovery,setRecovery]=useState(0)
     const history=useHistory()
     
     async function handleSignin(e) {
@@ -45,48 +48,76 @@ export default function Signin() {
         
       //  localStorage.setItem('token',token)
     }
+
+    async function handleRecoverySubmit() {
+      
+        const body = {
+            email,
+        }
+        await api.post('forgotPassword', body)
+            .then(res => {
+          
+                // console.log(res.data)
+                const token = res.data[0]
+                // console.log(token)
+                let templateParams = {
+                    // from_email: email,
+                    to_email:email,
+                    from_name: 'Seu serviço',
+                    // to_name: 'seuservico.suporte@gmail.com',
+                    subject: 'Redefinição de senha',
+                    message_html: `Clique no link para redefinir a senha :       <a href="http://localhost:3000/#/Nasdkoakkdsopwoalsndjawsds">http://localhost:3000/#/Nasdkoakkdsopwoalsndjawsds</a>`,
+                   }
+                   emailjs.send(
+                    'gmail',
+                    'template_lVSZEkOG',
+                     templateParams,
+                    'user_I9HMchinqeGSACZnS3DUo'
+                )
+                    localStorage.setItem('EmailReset',email)
+                    alert(`Enviamos um email para ${email}`)
+            })
+            .catch(err => {
+                alert(err.err)
+            })
+    }
  
     return (
 
         <div>
 
         
-        <div className="signin-container d-flex flex-md-row bg justify-content-around">
+        <div className="signin-container d-flex flex-md-row justify-content-around">
+     
    
-            {/*         
-        <video width='400' height='300' autoPlay>
-                <source src={loggin} type="video/mp4"/>
-            </video> */}
-                <div className='logoMb '>
-                    <img src={logoMb}
-                  width='25%'
-                        alt="" />
-                    <h1 className='font-weight-bold'>Seu Serviço</h1>
-    </div>
-            <div className="content d-flex mt-3"
-       
+            <div className="content d-flex flex-column mt-3"
+
             >
-            <section className='m-5'> 
-                <h1 className='font-weight-bold'>Entrar</h1>
-                <p className='text-muted font-weight-bold'>Acesse a plataforma!</p>
-                <Link to='/Register'>
-               
-                <button type="button" style={{borderRadius:'8px'}} class="btn btn-warning"> <i class="fa fa-arrow-left " aria-hidden="true" size={16} color='#E02041'> <span className='text-decoration-none'> Não tem cadastro?</span> </i></button>
-                </Link>
-            </section>
-
-
+           
+            <img className='logo-img m-2' src={logotipo} alt="logo"/>
             
-            <form onSubmit={handleSignin} className='mt-4' >           
+                    <form
+                        style={{borderRadius:"25px"}} 
+                        onSubmit={e => {
+                            if (recovery === 0) {
+                                handleSignin(e)
+                            } else {
+                                handleRecoverySubmit()
+                            }
+                        }}
+                        className='form mt-4 p-4'
+                    >           
                     <div className="form-group">
                         <div className='d-flex'>
 
-                            <span class="input-group-addon"><i class="fa fa-envelope-o fa-fw" aria-hidden="true"></i></span>
-                            <label for='email' className='font-weight-bold'>Email</label>
+                                <span
+                                    style={{color:"white"}}
+                                    class="input-group-addon"><i class="fa fa-envelope-o fa-fw" aria-hidden="true"></i></span>
+                            <label for='email'  style={{color:"white"}} className='font-weight-bold'>Email</label>
                         </div>
                         <input placeholder='Digite seu email'
                             type='email'
-                            style={{width:'85%'}}
+                            // style={{width:'85%'}}
                             value={email}
                             onChange={e => setEmail(e.target.value)}
                             id='email'
@@ -94,28 +125,41 @@ export default function Signin() {
                         />
                     </div>
 
-                    <div className="form-group">
-                        <div className='d-flex'>
-
-                            <span class="input-group-addon"><i class="fa fa-key fa-fw" aria-hidden="true"></i></span>
-                            <label for='password' className='font-weight-bold'>Senha</label>
-                        </div>
-                <input
+                  
+                        {recovery === 0 &&
+                              <div className="form-group">
+                              <div className='d-flex'>
+      
+                                  <span  style={{color:"white"}} class="input-group-addon"><i class="fa fa-key fa-fw" aria-hidden="true"></i></span>
+                                  <label  style={{color:"white"}} for='password' className='font-weight-bold'>Senha</label>
+                              </div>
+                            <input
                     type='password'
                     placeholder='Digite a sua senha'
-                    style={{width:'85%'}}
+                    // style={{width:'85%'}}
                     value={password}
                     onChange={e=>setPassword(e.target.value)}
                     id='password'
-                    className='form-control form-control-md'
-                    />
-
+                    className='form-control form-control-md'/>
                 </div>       
+                    }
 
-                <button className="control btn btn-success ml-2" style={{width:'85%'}} type='submit'>Entrar</button> 
-            </form>
 
-            </div>
+                        {recovery === 0 ? <button className="control btn btn-success" style={{ width: '100%' }} type='submit'>Entrar</button>
+                            :
+                            <button className="control btn btn-success" style={{ width: '100%' }} type='submit'>Recuperar senha</button>
+            }
+            
+                    <div className='d-flex justify-content-around'>
+                     {recovery === 0 &&  <Link onClick={e=>setRecovery(1)} style={{fontSize:"16px"}} className='text-center m-1'> Esqueceu a senha?</Link>}
+                      <Link to='/Register' style={{fontSize:"16px"}} className='text-center m-1'> Não tem conta?</Link>
+                    </div>
+                    </form>
+                    <button
+                        onClick={e=>history.push('/Start')}
+                        className='btn btn-warning m-5'>
+                        <i class="fa fa-arrow-left mr-1" aria-hidden="true"></i>Voltar para a pagina inicial</button>
+                </div>
             {/* <img src={img} className="rounded float-right img-fluid" style={{width:'50%'}} alt="img" /> */}
             <div className=' mt-3 d-md-flex align-self-center'>
 

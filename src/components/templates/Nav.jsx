@@ -101,7 +101,11 @@ export default class Navig extends Component {
                             
                             
                         }}
-                        >Deslogar</button>
+                            >
+                                <div className='d-flex flex-row'> 
+                                <i class="fa fa-sign-out" aria-hidden="true"></i>Sair
+                                </div>
+                        </button>
                         </Link>
                 </Navbar.Collapse>
             </Navbar>

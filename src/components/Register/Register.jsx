@@ -87,11 +87,13 @@ export default class Register extends React.Component {
                     <section>
                         <h1 className='font-weight-bold'>Cadastro</h1>
                         <p className='text-muted font-weight-bold'>Faça seu cadastro</p>
-                        <Link to='/' > 
+                       
                          
-                        <button type="button" style={{borderRadius:'8px'}} class="btn btn-warning"> <i class="fa fa-arrow-left " aria-hidden="true" size={16} color='#E02041'> <span className='text-decoration-none'> Voltar</span> </i></button>
+                            <button
+                                onClick={e=>this.props.history.goBack()}
+                                type="button" style={{ borderRadius: '8px' }} class="btn btn-warning"> <i class="fa fa-arrow-left " aria-hidden="true" size={16} color='#E02041'> <span className='text-decoration-none'> Voltar</span> </i></button>
                          
-                        </Link>
+                        
                     </section>
 
 

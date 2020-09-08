@@ -1,14 +1,17 @@
 /* color: white;
 background: linear-gradient(to right, rgb(22, 34, 42), rgb(58, 96, 115)); */
 
-.bg{
-    background-image: url('../../assets/IMGTEST.png');
-    background-repeat: no-repeat;
-    background-position: bottom left;
-    /* background-attachment: fixed; */
-}
+
+
 .logoMb{
     display: none;
+}
+
+.form{
+    -webkit-box-shadow: 0px -3px 41px 10px rgba(36,131,138,1);
+    -moz-box-shadow: 0px -3px 41px 10px rgba(36,131,138,1);
+    box-shadow: 0px -3px 41px 10px rgba(36,131,138,1);
+    background: linear-gradient(to right, rgb(22, 34, 42), rgb(58, 96, 115));
 }
 
 @media(max-width:955px){
@@ -30,13 +33,7 @@ background: linear-gradient(to right, rgb(22, 34, 42), rgb(58, 96, 115)); */
         /* align-self: center; */
     }
 
-    .bg{
-        /* background-position: right ; */
-        
-        background-image: url('../../assets/fundobranco.webp');
-        /* background-image: url('../../assets/IMGTEST2.png'); */
-        /* z-index: -1; */
-    } 
+    
     .control{
         width: 75%;
         align-self: flex-start;
@@ -55,11 +52,9 @@ background: linear-gradient(to right, rgb(22, 34, 42), rgb(58, 96, 115)); */
         padding: 1em;
         /* background-color: red; */
     }
-
-    .bg .content {
-        /* z-index: 1; */
-        /* margin: 2em;
-        padding:2em; */
+    .logo-img{
+        width: 70%;
+     
     }
 
 
@@ -73,15 +68,7 @@ background: linear-gradient(to right, rgb(22, 34, 42), rgb(58, 96, 115)); */
     }
  
 
-    .logoMb{ 
-        /* d-flex align-items-center justify-content-center */
-        display: flex;
-        flex-direction: row;
-        align-items: center;
-        
-        justify-content:center;
-        /* background-color: red; */
-    }
+ 
 
     
   

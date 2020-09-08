@@ -220,7 +220,9 @@ export default class servicesAccepts extends Component {
                 
                 {services.map(service => (
                          <div class="card text-white bg-warning mb-3 mt-4 ml-2 mr-2" style={{ width: "18rem" }}>
-                         <div class="card-header">{service.name}
+                         <div class="card-header">
+                         <p>{service.name}</p>
+                  <p>Local: {service.location}</p>
                              <button
                                  onClick={e => {
                                      this.setState({ loading: true })
@@ -245,7 +247,10 @@ export default class servicesAccepts extends Component {
                     {servicesInProgress.map(service => (
                         <div className='d-flex'>
                             <div class="card text-white bg-success mb-3 mt-4 ml-2 mr-2" style={{width:"18rem"}}>
-                                <div class="card-header"> {service.name}</div>
+                                <div class="card-header">
+                                <p>{service.name}</p>
+                               <p>Local: {service.location}</p>
+                                </div>
                                 <div class="card-body">
                                     <h5 class="card-title">{service.description}</h5>
                                     <p class="card-text">{service.content}</p>

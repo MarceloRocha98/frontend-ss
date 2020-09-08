@@ -14,7 +14,8 @@ export default class MyServices extends Component {
         serviceName: '',
         serviceDescription: '',
         serviceContent: '',
-        servicePrice:5,
+        servicePrice: 5,
+        serviceLocation:'',
         count: 0,
         page: 1, //page q to
         prevPage: 1,
@@ -194,7 +195,7 @@ export default class MyServices extends Component {
         const { arrayPages } = this.state
 
         let { services } = this.state
-        const { serviceName, serviceContent, serviceDescription, servicePrice } = this.state
+        const { serviceName, serviceContent, serviceDescription, servicePrice,serviceLocation } = this.state
         
 
 
@@ -286,12 +287,14 @@ export default class MyServices extends Component {
                             console.log(services)
                         }}
                         className='btn btn-warning'>Criar novo serviço</button> */}
-                    <h1 className='ml-5 pl-2'>Serviços criados</h1>
+                    <h1 className='ml-5 pl-2'>Serviços criados</h1> 
                     {services.map(service => (
                         <div className='d-flex flex-row'> 
                           
                         <div class="card text-white bg-info mb-3 mt-4 ml-2 mr-2" style={{ width: "18rem" }}>
-                            <div class="card-header">{service.name}
+                                <div class="card-header">
+                                    <p>{service.name}</p>
+                                    <p>Local: {service.location}</p>
                                 <button
                                     onClick={e => {
                                         this.setState({ loading: true })
@@ -346,9 +349,10 @@ export default class MyServices extends Component {
                                 content:serviceContent,
                                 description:serviceDescription,
                                 name: serviceName,
-                                price:servicePrice,
+                                price: servicePrice,
+                                location:serviceLocation,
                             }
-                            console.log('a pia quebrou e molhou toda a sala preciso de ajuda para conserta-la e limpar a sala obrigadoa'.length)
+                            // console.log('a pia quebrou e molhou toda a sala preciso de ajuda para conserta-la e limpar a sala obrigadoa'.length)
                             let control = 0;
                             const minimumDescription = 150
                             if (serviceDescription.length > minimumDescription) {
@@ -400,6 +404,25 @@ export default class MyServices extends Component {
                                 
                                 />
                             </div>
+                            </div>
+                            
+                            <div class="form-group">
+                                <label for="inputLocation" class="text-center font-weight-bold">Bairro onde será realizado </label>
+                                <p className='text-center text-muted'> <span className='font-weight-bold'>Não informe o número da residência</span> </p>
+                            <div class="">
+                                <input type="text"
+                                    placeholder='Bairro de realização do serviço'
+                                    class="form-control"
+                                    id="inputLocation"
+                                    value={serviceLocation}
+                                    onChange={(e) => {
+                                        
+                                        this.setState({ serviceLocation: e.target.value })
+                                        // console.log(servicePrice)
+                                    }}
+                                
+                                />
+                            </div>
                         </div>
      
                         <div class="form-group">
@@ -437,6 +460,7 @@ export default class MyServices extends Component {
                                 />
                             </div>
                         </div>
+                          
                         <button type="submit" class="btn btn-outline-success align-self-center mb-3">Cadastrar</button>
                     </form>
 
