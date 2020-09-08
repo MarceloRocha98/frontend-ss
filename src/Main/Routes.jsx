@@ -29,7 +29,7 @@ export default props =>
         <Route path='/Signin' component={Signin} />
         <Route path='/About' component={About} />
         <Route path='/Termos' component={Termos} />
-        <Route path='/Nasdkoakkdsopwoalsndjawsds' component={NewPassword} />
+        <Route path='/NewPassword' component={NewPassword} />
         <Route path='/Start' component={Start} />
         <Route path='/AboutUs' component={AboutUs} />
         <Route path='/ContactInitial' component={ContactInitial} />

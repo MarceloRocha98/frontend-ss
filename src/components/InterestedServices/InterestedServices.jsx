@@ -299,7 +299,7 @@ export default class InterestedServices extends React.Component {
                     serviceId:serviceId,
                 }
                 this.handleRefuse(dat)
-             //   alert('sucesso')
+               alert('Usuário aceito')
             })
             .catch(err=>alert(err))
 
@@ -549,15 +549,16 @@ export default class InterestedServices extends React.Component {
                                                     className='btn btn-primary'>
                                                    Sobre o usuário
                                                 </button>
-                                            <Link to="MyServices">
+                                          
                                                 <button type="button"
                                                     className="btn btn-success mr-1 m-2"
                                                     onClick={e => {
                              
                                                         this.handleAcept(user.id)
+                                                        this.props.history.push('/MyServices')
                                                     }}
                                                 >Aceitar</button>
-                                            </Link>
+                                           
                                 
                                             <button
                                                 type="button"

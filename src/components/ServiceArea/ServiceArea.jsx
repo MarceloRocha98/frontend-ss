@@ -305,9 +305,9 @@ export default class ServiceArea extends React.Component {
                 <div className='d-flex flex-column m-1'>
 
 
-                    
+                    <h3 className='text-center font-weight-bold'>Serviço sendo realizado</h3>
                     <div class="alert alert-info text-center" role="alert">
-                        Quando o serviço for realizado selecione a caixa abaixo "Serviço finalizado"
+                        Quando o serviço for finalizado selecione a caixa abaixo "Serviço finalizado"
 </div>
                     <div class="form-check align-self-center">
                         <input
@@ -326,7 +326,7 @@ export default class ServiceArea extends React.Component {
                              
   </label>
   </div>
-                        {(control === 1 && avaliated=== 0)&&
+                        {/* {(control === 1 && avaliated=== 0)&&
                             
                             <div className='mt-5 pt-5 d-flex flex-column'>
                             <h4
@@ -351,7 +351,7 @@ export default class ServiceArea extends React.Component {
                             </ul>
 
                 
-                        </div>}
+                        </div>} */}
                     {control === 1 &&   <h5 className='text-muted text-center mt-3'>Avise o {info.name} para selecionar "serviço finalizado" e atualize a página</h5>}
 
 
@@ -362,7 +362,7 @@ export default class ServiceArea extends React.Component {
 
             return (
                 <div className='d-flex flex-column'>
-               
+                <h3 className='text-center font-weight-bold'>Serviço sendo realizado</h3>
                     <div class="alert alert-info text-center" role="alert">
                         Quando o serviço for realizado selecione a caixa abaixo "Serviço finalizado"
 </div>
@@ -382,30 +382,63 @@ export default class ServiceArea extends React.Component {
             )
         }
 
-        if (data.userOwner === 1 && finish1 !== 0 && finish2 !== 0 && avaliated === 1) {
-            return (
+        if (data.userOwner === 1 && finish1 !== 0 && finish2 !== 0) {
+
+            if (avaliated === 1) {
+                
+            
+                return (
              
          
-            <div className='mt-4 d-flex flex-column'>
+                    <div className='mt-4 d-flex flex-column'>
                     
-            <div className="float-left">
+                        <div className="float-left">
 
-            <Link to='Home'>
+                            <Link to='Home'>
 
-            <button type="button" style={{borderRadius:'8px'}} class="btn btn-warning"> <i class="fa fa-arrow-left " aria-hidden="true" size={16} color='#E02041'> <span className='text-decoration-none'> Voltar</span> </i></button>
-</Link>
-            </div>
-            <p className='text-center font-weight-bold'> Serviço realizado, clique no botão para ver o código do serviço </p>
-            {/* <p className='text-center'> O pagamento será efetuado em até 3 dias úteis, caso tenha problemas nos contate e informe o código do serviço</p> */}
-            <button
-                className='btn btn-info align-self-center'
-                onClick={e => {
-                    this.token()
-                }}
-            >Código do serviço</button>
-        </div>
+                                <button type="button" style={{ borderRadius: '8px' }} class="btn btn-warning"> <i class="fa fa-arrow-left " aria-hidden="true" size={16} color='#E02041'> <span className='text-decoration-none'> Voltar</span> </i></button>
+                            </Link>
+                        </div>
+                        <p className='text-center font-weight-bold'> Serviço realizado, clique no botão para ver o código do serviço </p>
+                        {/* <p className='text-center'> O pagamento será efetuado em até 3 dias úteis, caso tenha problemas nos contate e informe o código do serviço</p> */}
+                        <button
+                            className='btn btn-info align-self-center'
+                            onClick={e => {
+                                this.token()
+                            }}
+                        >Código do serviço</button>
+                    </div>
         
-            )
+                )
+            } else {
+                let notas=[0,1,2,3,4,5,6,7,8,9,10]
+                return (
+                    <div className='mt-5 pt-5 d-flex flex-column'>
+                    <h4
+                        className='text-center font-weight-bold'
+                > Dê uma nota para o {info.name}</h4>
+
+                <ul style={{ listStyle: "none" }}
+                    className='d-flex flex-row align-self-center'>
+                    
+                {notas.map(nota => (
+                    
+                    <li
+                        key='nota'
+                        className='avaliation font-weight-bold p-3'
+                        style={{border:"solid 1px",borderRadius:"20px"}}
+                        value={nota}
+                        onClick={e=>this.handleNota(nota)}
+                    >
+                        {nota}</li>
+                    
+                ))}
+                    </ul>
+
+        
+                </div>
+                )
+            }
         }
             
 

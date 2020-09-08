@@ -54,6 +54,9 @@ export default function Signin() {
         const body = {
             email,
         }
+        
+      
+    
         await api.post('forgotPassword', body)
             .then(res => {
           
@@ -66,7 +69,7 @@ export default function Signin() {
                     from_name: 'Seu serviço',
                     // to_name: 'seuservico.suporte@gmail.com',
                     subject: 'Redefinição de senha',
-                    message_html: `Clique no link para redefinir a senha :       <a href="http://localhost:3000/#/Nasdkoakkdsopwoalsndjawsds">http://localhost:3000/#/Nasdkoakkdsopwoalsndjawsds</a>`,
+                    message_html: `Seu código para redefinir a senha :   ${token}`,
                    }
                    emailjs.send(
                     'gmail',
@@ -75,10 +78,12 @@ export default function Signin() {
                     'user_I9HMchinqeGSACZnS3DUo'
                 )
                     localStorage.setItem('EmailReset',email)
-                    alert(`Enviamos um email para ${email}`)
+                alert(`Enviamos seu código para o email ${email}`)
+                history.push('/NewPassword')
             })
             .catch(err => {
-                alert(err.err)
+                alert( alert(err.response.data.err || 'Erro'))
+                // console.log(err.response)
             })
     }
  
