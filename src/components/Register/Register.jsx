@@ -15,6 +15,7 @@ export default class Register extends React.Component {
         location: 'sp',
         sobrenome: "",
         termos:0,
+        success:0,
     }
 
     
@@ -48,8 +49,9 @@ export default class Register extends React.Component {
                     .then(e => {
 
                     
-                        alert('Cadastrado com sucesso')
-                        this.props.history.push('/Signin')
+                            alert('Cadastrado com sucesso')
+                                this.props.history.push('/Signin')
+                        this.setState({success:1})
                     }
                     )
             } catch (msg) {
@@ -75,7 +77,7 @@ export default class Register extends React.Component {
     //     console.log(this.props)
     // }
     render() {
-      const  {name,email,password, confirmPassword,location } =this.state
+      const  {name,email,password, confirmPassword,location,success } =this.state
       const estados=[ "AC", "AL", "AM", "AP", "BA", "CE", "DF", "ES", "GO", "MA", "MT", "MS", "MG", "PA", "PB", "PR", "PE", "PI", "RJ", "RN", "RO", "RS", "RR", "SC", "SE", "SP", "TO"]
       console.log(location) 
       
@@ -100,8 +102,12 @@ export default class Register extends React.Component {
                 
                     <form className='mb-3 mr-3'
                         onSubmit={e => {
-
+                            e.preventDefault()
                             this.handleRegister()
+                            // if (success === 1) {
+                            //     alert('Cadastrado com sucesso')
+                            //     this.props.history.push('/Signin')
+                            // }
                            // alert('teste')
                     }
                     }>
